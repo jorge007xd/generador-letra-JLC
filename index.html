@@ -12,7 +12,7 @@
             text-align: center;
             padding: 40px;
         }
-        input, textarea {
+        input {
             width: 80%;
             padding: 10px;
             margin: 10px;
@@ -28,6 +28,7 @@
             color: white;
             cursor: pointer;
             font-size: 18px;
+            margin: 5px;
         }
         button:hover {
             background-color: #009fd1;
@@ -36,6 +37,7 @@
             margin-top: 20px;
             font-size: 30px;
             word-break: break-word;
+            padding: 10px;
         }
     </style>
 </head>
@@ -46,6 +48,7 @@
     <input type="text" id="textoInput" placeholder="Escribe tu texto aquí">
     <br>
     <button onclick="convertir()">Convertir a 🇦 🇧 🇨</button>
+    <button onclick="copiar()">📋 Copiar</button>
 
     <div class="resultado" id="resultado"></div>
 
@@ -66,6 +69,21 @@
             }
 
             document.getElementById('resultado').innerText = resultado.trim();
+        }
+
+        function copiar() {
+            const texto = document.getElementById('resultado').innerText;
+            if (texto) {
+                navigator.clipboard.writeText(texto)
+                .then(() => {
+                    alert("✅ Texto copiado al portapapeles.");
+                })
+                .catch(err => {
+                    alert("❌ Error al copiar: " + err);
+                });
+            } else {
+                alert("⚠️ No hay texto para copiar.");
+            }
         }
     </script>
 
